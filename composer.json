@@ -1,0 +1,25 @@
+{
+    "name": "AlexanderEmelyanov/yii2-i18n-module",
+    "description": "Translation management module for Yii2 applications",
+    "type": "yii2-extension",
+    "keywords": ["yii2", "yii 2", "i18n", "translation", "translate", "management"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexander Emelyanov",
+            "email": "alexander.emelyanov@outlook.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/AlexanderEmelyanov/yii2-i18n-module/issues?state=open",
+        "source": "https://github.com/AlexanderEmelyanov/yii2-i18n-module"
+    },
+    "require": {
+        "yiisoft/yii2": "*",
+    },
+    "autoload": {
+        "psr-4": {
+            "AlexanderEmelyanov\\yii\\modules\\i18n\\": ""
+        }
+    }
+}
