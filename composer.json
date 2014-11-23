@@ -15,7 +15,7 @@
         "source": "https://github.com/AlexanderEmelyanov/yii2-i18n-module"
     },
     "require": {
-        "yiisoft/yii2": "*",
+        "yiisoft/yii2": "*"
     },
     "autoload": {"psr-4": {"AlexanderEmelyanov\\yii\\modules\\i18n\\": ""}}
 }
