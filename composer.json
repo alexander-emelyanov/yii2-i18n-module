@@ -17,9 +17,5 @@
     "require": {
         "yiisoft/yii2": "*",
     },
-    "autoload": {
-        "psr-4": {
-            "AlexanderEmelyanov\\yii\\modules\\i18n\\": ""
-        }
-    }
+    "autoload": {"psr-4": {"AlexanderEmelyanov\\yii\\modules\\i18n\\": ""}}
 }
