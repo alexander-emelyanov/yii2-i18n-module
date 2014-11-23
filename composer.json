@@ -1,5 +1,5 @@
 {
-    "name": "AlexanderEmelyanov/yii2-i18n-module",
+    "name": "alexander-emelyanov/yii2-i18n-module",
     "description": "Translation management module for Yii2 applications",
     "type": "yii2-extension",
     "keywords": ["yii2", "yii 2", "i18n", "translation", "translate", "management"],
@@ -11,8 +11,8 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/AlexanderEmelyanov/yii2-i18n-module/issues?state=open",
-        "source": "https://github.com/AlexanderEmelyanov/yii2-i18n-module"
+        "issues": "https://github.com/alexander-emelyanov/yii2-i18n-module/issues?state=open",
+        "source": "https://github.com/alexander-emelyanov/yii2-i18n-module"
     },
     "require": {
         "yiisoft/yii2": "*"
