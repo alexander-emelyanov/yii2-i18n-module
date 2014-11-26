@@ -10,17 +10,11 @@ $this->title = Yii::t('app', 'Messages');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-<pre>
-    <?php var_dump($this->params['breadcrumbs']) ?>
-</pre>
 <div class="message-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a(Yii::t('app', 'Create {modelClass}', [
-    'modelClass' => 'Message',
-]), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create {modelClass}', ['modelClass' => 'Message']), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

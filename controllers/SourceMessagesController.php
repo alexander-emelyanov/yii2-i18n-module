@@ -3,7 +3,7 @@
 namespace AlexanderEmelyanov\yii\modules\i18n\controllers;
 
 use Yii;
-use common\models\SourceMessage;
+use AlexanderEmelyanov\yii\modules\i18n\models\SourceMessage;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
