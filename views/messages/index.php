@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'language',
-            'translation:ntext',
+            'translation:text',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
