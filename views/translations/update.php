@@ -27,11 +27,12 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
         'model' => $model,
     ]) ?>
     <hr>
-    <?php foreach($relatedModels as $relatedModel): ?>
+    <?php foreach($relatedModels as $relatedModelKey =>  $relatedModel): ?>
         <h3><?= $relatedModel->language ?></h3>
         <?= $this->render('_related_model_form', [
             'form' => $form,
             'model' => $relatedModel,
+            'fieldNamePrefix' => 'Message[' . $relatedModelKey . ']'
         ]) ?>
     <?php endforeach; ?>
     <hr>
