@@ -3,6 +3,7 @@
 namespace AlexanderEmelyanov\yii\modules\i18n\models;
 
 use Yii;
+use yii\base\ErrorException;
 
 /**
  * This is the model class for table "source_message".
@@ -62,8 +63,15 @@ class SourceMessage extends \yii\db\ActiveRecord
      *       'en-GB' => null, // It mean that this SourceMessage haven't translation for en-Gb language
      *       ...
      * ]
+     * @throws \yii\base\ErrorException
      */
     public function getMessagesMap($newInsteadMissing = false){
+
+        if ($newInsteadMissing && $this->isNewRecord){
+            if (!$this->save()){
+                throw new ErrorException(Yii::t('app', 'Model {modelName} saving failed', ['modelName' => 'SourceMessage']));
+            }
+        }
 
         /** @var \AlexanderEmelyanov\yii\modules\i18n\models\Message[] $messages */
         $messages = $this->getMessages()->all();
