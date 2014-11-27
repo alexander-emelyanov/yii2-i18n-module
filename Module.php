@@ -6,7 +6,7 @@ use \Yii;
 
 /**
  * Class Module
- * @package common\modules\i18n
+ * @package AlexanderEmelyanov\yii\modules\i18n
  * @author Alexander Emelyanov
  * @date 23nov2014
  * @place Moscow, Russia

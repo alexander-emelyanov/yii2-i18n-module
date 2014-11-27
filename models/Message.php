@@ -13,8 +13,15 @@ use Yii;
  *
  * @property SourceMessage $id0
  */
-class Message extends \yii\db\ActiveRecord
-{
+class Message extends \yii\db\ActiveRecord{
+
+    /**
+     * @return array (ex.: ['en-US', 'ru-RU', 'en'])
+     */
+    public static function getSupportedLanguages(){
+        return Yii::$app->getI18n()->languages;
+    }
+
     /**
      * @inheritdoc
      */
@@ -26,13 +33,14 @@ class Message extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules(){
+
         return [
             [['id', 'language'], 'required'],
             [['id'], 'integer'],
             [['translation'], 'string'],
-            [['language'], 'string', 'max' => 16]
+            [['language'], 'string', 'max' => 16],
+            [['language'], 'in', 'range' => static::getSupportedLanguages()],
         ];
     }
 

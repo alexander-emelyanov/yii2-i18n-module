@@ -23,9 +23,9 @@ class I18N extends \yii\i18n\I18N {
     public $messageTable = '{{%message}}';
 
     /**
-     * @var
+     * @var array (ex.: ['en-US', 'ru-RU', 'en', ...])
      */
-    public $languages;
+    public $languages = null;
 
     /**
      * @throws \yii\base\InvalidConfigException
