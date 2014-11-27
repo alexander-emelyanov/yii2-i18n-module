@@ -26,7 +26,6 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
         'form' => $form,
         'model' => $model,
     ]) ?>
-    <hr>
     <?php foreach($relatedModels as $relatedModelKey =>  $relatedModel): ?>
         <h3><?= $relatedModel->language ?></h3>
         <?= $this->render('_related_model_form', [
@@ -35,7 +34,6 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
             'fieldNamePrefix' => 'Message[' . $relatedModelKey . ']'
         ]) ?>
     <?php endforeach; ?>
-    <hr>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
