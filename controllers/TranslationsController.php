@@ -67,27 +67,11 @@ class TranslationsController extends DefaultController{
      * @throws \yii\base\ErrorException
      */
     public function actionCreate(){
-
         $model = new SourceMessage();
-        $relatedModels = $model->getMessagesMap(true);
-
-        if ($model->load(Yii::$app->request->post())) {
-            Message::loadMultiple($relatedModels, Yii::$app->request->post());
-            foreach($relatedModels as $relatedModel){
-                if (!($relatedModel->save())){
-                    throw new ErrorException(Yii::t('app', 'Model {modelName} saving failed', ['modelName' => 'Message']));
-                }
-            }
-            if (!$model->save()){
-                throw new ErrorException(Yii::t('app', 'Model {SourceMessage} saving failed', ['modelName' => 'Message']));
-            }
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-                'relatedModels' => $relatedModels,
-            ]);
+        if (!$model->save()){
+            throw new ErrorException(Yii::t('app', 'Model {modelName} saving failed', ['modelName' => 'SourceMessage']));
         }
+        return $this->redirect(['update', 'id' => $model->id]);
     }
 
     /**

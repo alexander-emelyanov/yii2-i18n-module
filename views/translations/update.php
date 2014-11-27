@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
         ]) ?>
     <?php endforeach; ?>
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Update'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>

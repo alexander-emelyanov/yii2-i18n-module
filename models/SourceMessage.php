@@ -67,12 +67,6 @@ class SourceMessage extends \yii\db\ActiveRecord
      */
     public function getMessagesMap($newInsteadMissing = false){
 
-        if ($newInsteadMissing && $this->isNewRecord){
-            if (!$this->save()){
-                throw new ErrorException(Yii::t('app', 'Model {modelName} saving failed', ['modelName' => 'SourceMessage']));
-            }
-        }
-
         /** @var \AlexanderEmelyanov\yii\modules\i18n\models\Message[] $messages */
         $messages = $this->getMessages()->all();
 
