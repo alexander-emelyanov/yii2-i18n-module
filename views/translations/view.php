@@ -21,7 +21,7 @@ $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Translations'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="source-message-view">
+<div class="translation-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

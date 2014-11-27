@@ -5,6 +5,7 @@ namespace AlexanderEmelyanov\yii\modules\i18n\controllers;
 use Yii;
 use AlexanderEmelyanov\yii\modules\i18n\models\SourceMessage;
 use AlexanderEmelyanov\yii\modules\i18n\models\Message;
+use yii\base\ErrorException;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -51,30 +52,11 @@ class TranslationsController extends DefaultController{
      * @return mixed
      */
     public function actionView($id){
-
         $model = $this->findModel($id);
-
-        /** @var \AlexanderEmelyanov\yii\modules\i18n\models\Message[] $messages */
-        $messages = $model->getMessages()->all();
-
-        $relatedModels = [];
-        foreach($messages as $message){
-            $relatedModelsKey = $message->language;
-            $relatedModels[$relatedModelsKey] = $message;
-        }
-
-        /** @var array $relatedModelsKeys */
-        $relatedModelsKeys = Message::getSupportedLanguages();
-
-        foreach($relatedModelsKeys as $relatedModelsKey){
-            if (!isset($relatedModels[$relatedModelsKey])){
-                $relatedModels[$relatedModelsKey] = null;
-            }
-        }
-
+        $relatedModelsMap = $model->getMessagesMap();
         return $this->render('view', [
             'model' => $model,
-            'relatedModels' => $relatedModels,
+            'relatedModels' => $relatedModelsMap,
         ]);
     }
 
@@ -83,9 +65,9 @@ class TranslationsController extends DefaultController{
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
-        $model = new Translation();
+    public function actionCreate(){
+
+        $model = new SourceMessage();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -98,19 +80,29 @@ class TranslationsController extends DefaultController{
 
     /**
      * Updates an existing SourceMessage model.
+     *
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
+     * @throws \yii\base\ErrorException
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id){
+
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $relatedModels = $model->getMessagesMap(true);
+
+        if ($model->load(Yii::$app->request->post())) {
+            if (!$model->save()){
+                throw new ErrorException('Model SourceMessage saving failed');
+            }
+            var_dump($_POST);
+            die;
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'relatedModels' => $relatedModels,
             ]);
         }
     }

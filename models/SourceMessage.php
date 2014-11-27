@@ -53,4 +53,43 @@ class SourceMessage extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Message::className(), ['id' => 'id']);
     }
+
+    /**
+     * @param $newInsteadMissing bool
+     * @return \AlexanderEmelyanov\yii\modules\i18n\models\Message[]
+     * ex.: ['en-US' => AlexanderEmelyanov\yii\modules\i18n\models\Message,
+     *       'ru-RU' => AlexanderEmelyanov\yii\modules\i18n\models\Message,
+     *       'en-GB' => null, // It mean that this SourceMessage haven't translation for en-Gb language
+     *       ...
+     * ]
+     */
+    public function getMessagesMap($newInsteadMissing = false){
+
+        /** @var \AlexanderEmelyanov\yii\modules\i18n\models\Message[] $messages */
+        $messages = $this->getMessages()->all();
+
+        $messageMap = [];
+        foreach($messages as $message){
+            $relatedModelsKey = $message->language;
+            $messageMap[$relatedModelsKey] = $message;
+        }
+
+        /** @var array $relatedModelsKeys */
+        $languages = Message::getSupportedLanguages();
+
+        foreach($languages as $language){
+            if (!isset($messageMap[$language])){
+                if ($newInsteadMissing){
+                    $message = new Message();
+                    $message->language = $language;
+                    $message->link('id0', $this);
+                    $messageMap[$language] = $message;
+                } else {
+                    $messageMap[$language] = null;
+                }
+            }
+        }
+
+        return $messageMap;
+    }
 }
